@@ -1,7 +1,6 @@
 # yt
 Test api Google & Youtube
-
-## Iniciar proyecto
+Usando Yoman: `<a>[bootstrap](https://github.com/yeoman/generator-bootstrap#readme)`
 ``` bash
 gulp
 gulp serve
