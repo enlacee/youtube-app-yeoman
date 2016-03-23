@@ -1,6 +1,6 @@
 # yt
+Usando *[Yeoman](http://yeoman.io/)* : `<a>[bootstrap](https://github.com/yeoman/generator-bootstrap#readme)`
 Test api Google & Youtube
-Usando Yoman: `<a>[bootstrap](https://github.com/yeoman/generator-bootstrap#readme)`
 ``` bash
 gulp
 gulp serve
