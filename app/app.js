@@ -38,6 +38,13 @@ AS.getDatosBasicosYoutube = function(access_token){
 			console.log("URL avatar", me.model.items[0].snippet.thumbnails.high.url);
 			console.log("ID favoritas", me.model.items[0].contentDetails.relatedPlaylists.favorites);
 			var idFavorite = me.model.items[0].contentDetails.relatedPlaylists.favorites;
+			$('.jumbotron a.btn-lg').
+				removeClass('btn-danger').
+				addClass('btn-success').
+				text('').
+				append('<img width="25" src="'+me.model.items[0].snippet.thumbnails.high.url+'" />').
+				append(' ').
+				append(me.model.items[0].snippet.title);
 			me.getFavoritesList(idFavorite);
 		});
 };
@@ -46,9 +53,22 @@ AS.getFavoritesList = function(channelId) {
 	var me = this;
 	var url ="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + channelId + "&key=" + me.getApiKey();
 	var data = new AjaxModel();
+	var $space = $('#spaceScanner');
+	$space.append('<p>Caragando lista de videos <code>Favoritos...</code></p>');
 	data.load(url)
 		.then(function() {
 			console.log('data', data);
+			$space.append('<p>Mostrando <code>imagenes...</code></p>');
+
+			var strHtml = '';
+			strHtml += '<ul class="ulflex">';
+			data.items.forEach(function(element, index, array){
+				// strHtml
+				console.log(element,index,array);
+				strHtml += '<li><img width="190" src="'+ element.snippet.thumbnails.medium.url+'"/></li>';
+			});
+			strHtml += '</ul>';
+			$space.append(strHtml);
 		});
 };
 

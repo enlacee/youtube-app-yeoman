@@ -93,3 +93,12 @@ body {
     border-bottom: 0;
   }
 }
+
+// EXTRA CSS ANIBAL
+#spaceScanner ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
