@@ -41,6 +41,7 @@ AS.getDatosBasicosYoutube = function(access_token){
 			$('.jumbotron a.btn-lg').
 				removeClass('btn-danger').
 				addClass('btn-success').
+				attr('href', '#').
 				text('').
 				append('<img width="25" src="'+me.model.items[0].snippet.thumbnails.high.url+'" />').
 				append(' ').
@@ -52,20 +53,22 @@ AS.getDatosBasicosYoutube = function(access_token){
 AS.getFavoritesList = function(channelId) {
 	var me = this;
 	var url ="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + channelId + "&key=" + me.getApiKey();
+	url +='&maxResults=12';
 	var data = new AjaxModel();
 	var $space = $('#spaceScanner');
 	$space.append('<p>Caragando lista de videos <code>Favoritos...</code></p>');
 	data.load(url)
 		.then(function() {
 			console.log('data', data);
-			$space.append('<p>Mostrando <code>imagenes...</code></p>');
+			$space.append('<p>Mostrando <code>videos e imagenes...</code></p>');
 
 			var strHtml = '';
 			strHtml += '<ul class="ulflex">';
 			data.items.forEach(function(element, index, array){
 				// strHtml
 				console.log(element,index,array);
-				strHtml += '<li><img width="190" src="'+ element.snippet.thumbnails.medium.url+'"/></li>';
+				var url = 'https://www.youtube.com/watch?v=' + element.snippet.resourceId.videoId;
+				strHtml += '<li><a href="' + url + '" target="_blank"><img width="200" src="'+ element.snippet.thumbnails.medium.url+'"/></a></li>';
 			});
 			strHtml += '</ul>';
 			$space.append(strHtml);
